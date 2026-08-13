@@ -48,7 +48,7 @@ class AuthService:
             status_code=status.HTTP_401_UNAUTHORIZED, detail="identifiant invalide"
         )
 
-    def inscrire(self, nom, prenom, email, matricule, mot_de_passe, telephone=None):
+    def inscrire(self, email, nom, prenom,mot_de_passe):
         if self.utilisateur_repository.get_by_email(email):
             raise HTTPException(
                 status_code=status.HTTP_409_CONFLICT, detail="Email déjà existant"
@@ -59,9 +59,7 @@ class AuthService:
             nom=nom,
             prenom=prenom,
             email=email,
-            matricule=matricule,
             mot_de_passe=mot_de_passe_hashe,
-            telephone=telephone,
         )
 
         nouvel_utilisateur = self.utilisateur_repository.create(utilisateur)

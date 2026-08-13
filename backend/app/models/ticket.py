@@ -25,7 +25,7 @@ class Ticket(Base):
 
 
     # Relations
-    demandeur = relationship("Utilisateur", back_populates="tickets_demandes")
-    recepteur = relationship("Utilisateur", back_populates="tickets_recus")
-    categorie = relationship("Category", back_populates="tickets")
+    demandeur = relationship("Utilisateur", foreign_keys=[demandeur_id],back_populates="tickets_demandes")
+    recepteur = relationship("Utilisateur", foreign_keys=[recepteur_id],back_populates="tickets_recus")
+    categorie = relationship("Categorie", back_populates="tickets")
     
