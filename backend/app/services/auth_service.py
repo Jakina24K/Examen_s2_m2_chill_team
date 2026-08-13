@@ -53,11 +53,6 @@ class AuthService:
             raise HTTPException(
                 status_code=status.HTTP_409_CONFLICT, detail="Email déjà existant"
             )
-        if self.utilisateur_repository.get_by_matricule(matricule):
-            raise HTTPException(
-                status_code=status.HTTP_409_CONFLICT,
-                detail=("Matricule déjà existante"),
-            )
 
         mot_de_passe_hashe = pwd_context.hash(mot_de_passe)
         utilisateur = Utilisateur(

@@ -28,8 +28,17 @@ def get_current_user(token = Depends(oauth2_scheme), db: Session = Depends(get_d
 
     return utilisateur
 
-def require_gerant(current_user = Depends(get_current_user)):
-    if current_user.role != "gerant":
+def require_demandeur(current_user = Depends(get_current_user)):
+    if current_user.role != "demandeur":
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Connecté mais non autorisé"
+        )
+    
+    return current_user
+
+def require_recepteur(current_user = Depends(get_current_user)):
+    if current_user.role != "recepteur":
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Connecté mais non autorisé"

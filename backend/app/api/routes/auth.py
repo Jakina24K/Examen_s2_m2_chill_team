@@ -36,11 +36,9 @@ def register(request: RegisterRequest, db: Session = Depends(get_db)):
 
     resultat = auth_service.inscrire(
         email=request.email,
-        matricule=request.matricule,
         nom=request.nom,
         prenom=request.prenom,
         mot_de_passe=request.mot_de_passe,
-        telephone=request.telephone,
     )
 
     return resultat

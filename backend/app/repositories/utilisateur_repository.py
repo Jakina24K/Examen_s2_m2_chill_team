@@ -8,9 +8,6 @@ class UtilisateurRepository:
     def get_by_email(self, email: str):
         return self.db.query(Utilisateur).filter(Utilisateur.email == email).first()
     
-    def get_by_matricule(self, matricule: str):
-        return self.db.query(Utilisateur).filter(Utilisateur.matricule == matricule).first()
-    
     def get_by_id(self, id: str):
         return self.db.query(Utilisateur).filter(Utilisateur.id == id).first()
     
