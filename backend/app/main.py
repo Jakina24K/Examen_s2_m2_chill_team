@@ -28,6 +28,13 @@ app.add_middleware(
 
 app.include_router(auth.routeur, prefix="/auth", tags=["Authentification"])
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # l'origine de ton frontend (Next.js en dev)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 @app.on_event("startup")
 def verify_db_connection():
     try:
